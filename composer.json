@@ -1,11 +1,11 @@
 {
-    "name": "maksa988/laravel-unitpay",
-    "description": "UnitPay payments for Laravel",
+    "name": "alexsynarchin/laravel-netting",
+    "description": "UnitPay payments for Laravel with netting scheme",
     "license": "MIT",
     "authors": [
         {
-            "name": "maksa988",
-            "email": "maksa988ua@gmail.com"
+            "name": "Alex",
+            "email": "alexsynarchin@gmail.com"
         }
     ],
     "require": {
