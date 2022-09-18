@@ -7,10 +7,14 @@ return [
      */
     'public_key' => env('UNITPAY_PUBLIC_KEY', ''),
 
+    'public_key_netting' => env('UNITPAY_PUBLIC_KEY_NETTING', ''),
+
     /*
      * Project`s secret key
      */
     'secret_key' => env('UNITPAY_SECRET_KEY', ''),
+    
+    'secret_key_netting' => env('UNITPAY_SECRET_KEY_NETTING', ''),
 
     /*
      * Locale for payment form

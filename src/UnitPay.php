@@ -30,13 +30,21 @@ class UnitPay
      * @param null $currency
      * @return string
      */
-    public function getPayUrl($amount, $order_id, $email, $desc = null, $currency = null)
+    public function getPayUrl($amount, $order_id, $email, $netting, $desc = null, $currency = null)
     {
         // Array of url query
         $query = [];
 
         // Public key
-        $url = rtrim(config('unitpay.pay_url'), '/').'/'.config('unitpay.public_key');
+        $public_key = '';
+        if(!$netting) {
+            $public_key = config('unitpay.public_key');
+            $secret_key = config('unitpay.secret_key');
+        } else {
+            $public_key = config('unitpay.public_key_netting');
+            $secret_key = config('unitpay.secret_key_netting');
+        }
+        $url = rtrim(config('unitpay.pay_url'), '/').'/'. $public_key;
 
         // Amount of payment
         $query['sum'] = $amount;
@@ -59,7 +67,7 @@ class UnitPay
         $query['currency'] = is_null($currency) ? config('unitpay.currency') : $currency;
 
         // Generate signature
-        $query['signature'] = $this->getFormSignature($order_id, $query['currency'], $desc, $amount, config('unitpay.secret_key'));
+        $query['signature'] = $this->getFormSignature($order_id, $query['currency'], $desc, $amount, $secret_key);
 
         // Merge url ang query and return
         return $url.'?'.http_build_query($query);
