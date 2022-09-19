@@ -137,10 +137,10 @@ class UnitPay
      * @throws Exceptions\InvalidPaidOrder
      * @throws Exceptions\InvalidSearchOrder
      */
-    public function handle(Request $request)
+    public function handle(Request $request, $netting = false)
     {
         // Validate request from UnitPay
-        if (! $this->validateOrderFromHandle($request)) {
+        if (! $this->validateOrderFromHandle($request, $netting)) {
             return $this->responseError('validateOrderFromHandle');
         }
 

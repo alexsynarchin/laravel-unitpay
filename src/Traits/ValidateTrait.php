@@ -35,9 +35,15 @@ trait ValidateTrait
      * @param Request $request
      * @return bool
      */
-    public function validateSignature(Request $request)
+    public function validateSignature(Request $request, $netting=false)
     {
-        $sign = $this->getSignature($request->get('method'), $request->get('params'), config('unitpay.secret_key'));
+        if(!$netting) {
+            $secret_key = config('unitpay.secret_key');
+        } else {
+            $secret_key = config('unitpay.secret_key_netting');
+        }
+
+        $sign = $this->getSignature($request->get('method'), $request->get('params'), $secret_key);
 
         if ($request->input('params.signature') != $sign) {
             return false;
@@ -50,10 +56,10 @@ trait ValidateTrait
      * @param Request $request
      * @return bool
      */
-    public function validateOrderFromHandle(Request $request)
+    public function validateOrderFromHandle(Request $request, $netting=false)
     {
         return $this->AllowIP($request->ip())
                     && $this->validate($request)
-                    && $this->validateSignature($request);
+                    && $this->validateSignature($request, $netting=false);
     }
 }
