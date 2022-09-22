@@ -60,6 +60,6 @@ trait ValidateTrait
     {
         return $this->AllowIP($request->ip())
                     && $this->validate($request)
-                    && $this->validateSignature($request, $netting=false);
+                    && $this->validateSignature($request, $netting);
     }
 }
