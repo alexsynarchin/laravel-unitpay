@@ -58,6 +58,7 @@ trait ValidateTrait
      */
     public function validateOrderFromHandle(Request $request, $netting=false)
     {
+        dd($netting);
         return $this->AllowIP($request->ip())
                     && $this->validate($request)
                     && $this->validateSignature($request, $netting);
