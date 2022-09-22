@@ -37,6 +37,7 @@ trait ValidateTrait
      */
     public function validateSignature(Request $request, $netting=false)
     {
+        dd($netting);
         if(!$netting) {
             $secret_key = config('unitpay.secret_key');
         } else {
@@ -58,7 +59,7 @@ trait ValidateTrait
      */
     public function validateOrderFromHandle(Request $request, $netting=false)
     {
-        dd($netting);
+
         return $this->AllowIP($request->ip())
                     && $this->validate($request)
                     && $this->validateSignature($request, $netting);
