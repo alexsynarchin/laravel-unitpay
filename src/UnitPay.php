@@ -55,9 +55,6 @@ class UnitPay
         // User email
         $query['customerEmail'] = $email;
 
-        if($netting) {
-            $query['test'] = 1;
-        }
 
         // Locale for payment form
         $query['locale'] = config('unitpay.locale', 'ru');
