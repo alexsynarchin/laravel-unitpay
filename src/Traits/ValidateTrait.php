@@ -37,7 +37,7 @@ trait ValidateTrait
      */
     public function validateSignature(Request $request, $netting=false)
     {
-        dd($netting);
+
         if(!$netting) {
             $secret_key = config('unitpay.secret_key');
         } else {
